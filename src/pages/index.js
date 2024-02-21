@@ -6,7 +6,7 @@ const BE_URL = "http://localhost:3001/add-user";
   async function handleSubmit(e) {
     e.preventDefault();
     const data = {
-      name: e.target.username.value,
+      name: e.target.name.value,
       age: Number(e.target.age.value),
     };
     console.log(data);
@@ -20,6 +20,7 @@ const BE_URL = "http://localhost:3001/add-user";
    };
 const FETCHED_DATA = await fetch(BE_URL, options);
 const FETCHED_JSON = await FETCHED_DATA.text();
+
 
 console.log(FETCHED_JSON)
 
@@ -38,6 +39,7 @@ console.log(FETCHED_JSON)
       <input type="submit" value="Save" />
       </div>
     </form>
+   
   </div>
   );
 }
