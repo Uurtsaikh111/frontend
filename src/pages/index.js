@@ -1,3 +1,4 @@
+import { nanoid } from 'nanoid'
 
 export default function Home() {
 
@@ -5,9 +6,14 @@ const BE_URL = "http://localhost:3001/add-user";
 
   async function handleSubmit(e) {
     e.preventDefault();
+
+    const newid = nanoid();
+    
+   
     const data = {
       name: e.target.name.value,
       age: Number(e.target.age.value),
+      id:newid
     };
     console.log(data);
 
@@ -20,12 +26,10 @@ const BE_URL = "http://localhost:3001/add-user";
    };
 const FETCHED_DATA = await fetch(BE_URL, options);
 const FETCHED_JSON = await FETCHED_DATA.text();
-
-
 console.log(FETCHED_JSON)
 
   }
-  return (
+return (
   <div className="w-[200px] m-auto flex flex-col gap-[10px]">
     <form onSubmit={handleSubmit}>
       <div className="flex flex-col gap-[10px]">
