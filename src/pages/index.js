@@ -1,17 +1,16 @@
 import { nanoid } from 'nanoid'
-import { useState } from 'react';
-export default function Home() {
-const [list, setList] = useState([])
+import { useState,useEffect } from 'react';
 
+export default function Home() {
 
 const BE_URL = "http://localhost:3001/add-user";
+
+const [users, setUsers] = useState("")
 
   async function handleSubmit(e) {
     e.preventDefault();
 
     const newid = nanoid();
-    
-   
     const data = {
       name: e.target.name.value,
       age: Number(e.target.age.value),
@@ -27,9 +26,10 @@ const BE_URL = "http://localhost:3001/add-user";
     body: JSON.stringify(data),
    };
 const FETCHED_DATA = await fetch(BE_URL, options);
-const FETCHED_JSON = await FETCHED_DATA.json();
+const FETCHED_JSON = await FETCHED_DATA.text();
 
-console.log(FETCHED_JSON)
+setUsers(FETCHED_JSON);
+console.log("array:",setUsers);
 
 
 
@@ -52,7 +52,15 @@ return (
         
       </div>
     </form>
-   
+    <div>
+      {/* {setUsers.users.map((a)=> {
+        return(
+          <div>{a.name}</div>
+          
+
+        )
+      })} */}
+    </div>
   </div>
   );
 }
